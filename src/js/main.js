@@ -1,15 +1,23 @@
-import { getParkData } from "./parkService.mjs";
+import { getParkData, getParkInfoLinks } from "./parkService.mjs";
 
 const parkData = getParkData();
-
+const parkInfoLinks = getParkInfoLinks();
 
 
 function init() {
+    setHeaderInfo();
+    setIntro(parkData);
+    setParkInfo(parkInfoLinks);
+    setFooter(parkData);
+}
+
+init();
+
+function setHeaderInfo() {
     updateDisclaimer(parkData);
     document.querySelector("title").innerHTML=parkData.fullName;
     document.querySelector(".hero-banner").innerHTML=bannerTemplate(parkData);
-  }
-  init();
+}
 
 function updateDisclaimer(park){
     let disclaimer = document.querySelector(".disclaimer a");
@@ -30,3 +38,41 @@ function bannerTemplate(park){
     `;
 }
 
+function setIntro(park){
+    document.querySelector(".intro").innerHTML=
+    `<h1>${park.fullName}</h1>
+    <p>${park.description}</p>`;
+}
+
+function setParkInfo(info){
+    let card = document.querySelector(".info");
+    let htmlToInsert = info.map(mediaCardTemplate);
+    card.innerHTML = htmlToInsert.join("");
+}
+
+function mediaCardTemplate(info){
+    return `<div class="media-card">
+    <a href="${info.link}"><img src="${info.image}" alt="${info.description}"></a>
+        <a href="${info.link}">${info.name}</a>
+        <p>${info.description}</p>
+    </div>`;
+}
+
+function setFooter(park){
+    const email = park.contacts.emailAddresses[0].emailAddress;
+    const voice = getVoicePhone(park.contacts.phoneNumbers)
+    console.log(voice);
+    document.querySelector("#park-footer").innerHTML = `<section class="contact">
+    <h3>Contact Info</h3>
+    <h4>Mailing Address:</h4>
+    <div><p>${email}<p>
+    <p>Yellowstone National Park, WY 82190-0168</p></div>
+    <h4>Phone:</h4>
+    <p>${voice.phoneNumber}</p>
+    </section>`;
+}
+
+  function getVoicePhone(phonenumbers) {
+    const voice = phonenumbers.find((phoneNumber) => phoneNumber.type === "Voice");
+    return voice;
+  }
