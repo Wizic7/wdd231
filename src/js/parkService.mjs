@@ -1,4 +1,67 @@
-const park = {
+const baseUrl = "https://developer.nps.gov/api/v1/";
+const apiKey = import.meta.env.VITE_NPS_API_KEY;
+const parkCode = "?parkCode=glac";
+
+export async function getJson(url) {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey
+    }
+  };
+  let data = {};
+  const response = await fetch(baseUrl + url + parkCode, options);
+  if (response.ok) {
+    data = await response.json();
+  } else throw new Error("response not ok");
+  return data;
+}
+
+
+export async function getParkData() {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey
+    }
+  };
+  let data = {};
+  const response = await fetch(baseUrl + "parks" + parkCode, options);
+  // check to make sure the reponse was ok.
+  if (response.ok) {
+    // convert to JSON
+    data = await response.json();
+  } else throw new Error("response not ok");
+    return data.data[0];
+  
+}
+
+export function getParkInfoLinks(data) {
+
+  return [
+    {
+      name: "Current Conditions &#x203A;",
+      link: "conditions.html",
+      image: data.images[2].url,
+      description:
+        "See what conditions to expect in the park before leaving on your trip!"
+    },
+    {
+      name: "Fees and Passes &#x203A;",
+      link: "fees.html",
+      image: data.images[3].url,
+      description: "Learn about the fees and passes that are available."
+    },
+    {
+      name: "Visitor Centers &#x203A;",
+      link: "visitor_centers.html",
+      image: data.images[4].url,
+      description: "Learn about the visitor centers in the park."
+    }
+  ];
+}
+
+/* const park = {
   id: "F58C6D24-8D10-4573-9826-65D42B8B83AD",
   url: "https://www.nps.gov/yell/index.htm",
   fullName: "Yellowstone National Park",
@@ -154,33 +217,8 @@ const park = {
   name: "Yellowstone",
   designation: "National Park"
 };
+*/
 
-export function getParkData() {
-  return park;
-}
-
-const parkInfoLinks = [
-  {
-    name: "Current Conditions &#x203A;",
-    link: "conditions.html",
-    image: park.images[2].url,
-    description:
-      "See what conditions to expect in the park before leaving on your trip!"
-  },
-  {
-    name: "Fees and Passes &#x203A;",
-    link: "fees.html",
-    image: park.images[3].url,
-    description: "Learn about the fees and passes that are available."
-  },
-  {
-    name: "Visitor Centers &#x203A;",
-    link: "visitor_centers.html",
-    image: park.images[9].url,
-    description: "Learn about the visitor centers in the park."
-  }
-];
-
-export function getParkInfoLinks() {
-  return parkInfoLinks;
-}
+//export function getParkData() {
+  //return park;
+//}
