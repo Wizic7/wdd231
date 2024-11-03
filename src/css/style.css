@@ -204,10 +204,14 @@ svg {
 }
 
 /* Header (global) styling */
-.global-header{
-  background-color: var(--bs-body-color);
-  display: flex;
+.global-header {
+  background-color: var(--bs-black);
+  color: white;
+  display: grid;
+  grid-template-columns: auto 200px;
   justify-content: space-between;
+  /* padding: 0.3em 1rem; */
+  fill: white;
 }
 
 .site-title{
@@ -231,17 +235,52 @@ svg {
 
 #global-nav-toggle{
   height: 30px;
-  background-color: var(--bs-body-color);
+  background-color: var(--bs-black);
   border: none;
   display: flex;
   align-items: center;
   font-size: 1.8rem;
   text-transform: uppercase;
   color: var(--bs-link-color);
-  border-left: 1px solid var(--bs-grey-5);
-  padding: 1.2em;
+  /* border-left: 1px solid var(--bs-grey-5); */
+  /* padding: 1.2em; */
 }
 
+.global-nav {
+  max-height: 0;
+  transition: max-height 2s
+}
+
+.show{
+  max-height: 300px;
+}
+
+/* Nav Button and Menu */
+
+.global-nav__toggle--closed {
+  display: flex;
+  align-items: center;
+}
+.global-nav__toggle--open {
+  display: none;
+  align-items: center;
+}
+
+.global-nav__toggle[aria-expanded="true"] > .global-nav__toggle--open {
+  display: flex;
+}
+
+.global-nav__toggle[aria-expanded="true"] > .global-nav__toggle--closed {
+  display: none;
+}
+
+.global-nav__toggle[aria-expanded="false"] > .global-nav__toggle--open {
+  display: none;
+}
+
+.global-nav__toggle[aria-expanded="false"] > .global-nav__toggle--closed {
+  display: flex;
+}
 
 /* Banner styling */
 .hero-banner{
@@ -389,7 +428,15 @@ INSTRUCTOR CODE COPIED
   margin: 0.5rem 0;
 }
 
-/* Conditions Styles */
+
+
+
+
+/* 
+--------------------------
+Conditions Styles 
+-------------------------------------
+*/
 .conditions-main{
   margin-left: 3vmin;
 }
