@@ -36,6 +36,21 @@ export async function getParkData() {
   
 }
 
+export async function getAlertData() {
+  let request = await getJson("alerts");
+  return request.data;
+}
+
+export async function getActivityData() {
+  let request = await getJson("activities");
+  return request.data;
+}
+
+export async function getVisitorCenterData() {
+  let request = await getJson("visitorcenters");
+  return request.data;
+}
+
 export function getParkInfoLinks(data) {
 
   return [

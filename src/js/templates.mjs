@@ -1,3 +1,4 @@
+import spritePath from '../images/sprite.symbol.svg'
 
 export function mediaCardTemplate(info){
     return `<div class="media-card">
@@ -18,4 +19,34 @@ export function bannerTemplate(park){
     </p>
     </div>
     `;
+}
+
+export function alertTemplate(data){
+    let alertType = data.category.toLowerCase();
+    if(alertType.includes("closure")) {
+        alertType = "closure";
+    }
+    return `
+    <li>
+    <svg class="icon" focusable="false" aria-hidden="true">
+      <use xlink:href="${spritePath}#alert-${alertType}"></use>
+    </svg>
+    <p class="alert-header alert-${alertType}">${data.title}</p>
+    <p>${data.description}</p>
+    </li>
+    `
+}
+
+export function visitor_centersTemplate(data){
+    return `<li class="visitor-center">
+            <h3>${data.name}</h3>
+            <p>${data.description}</p>
+            <p>${data.directionsInfo}</p>
+            </li>`;
+}
+
+export function activitiesTemplate(data){
+    return `<li class="activity">
+            <p>${data.name}</p>
+            </li>`;
 }
