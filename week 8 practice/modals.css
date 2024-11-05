@@ -1,0 +1,56 @@
+.modal {
+    display:none;
+    background-color: rgba(60, 60, 60, 0.6);
+    top: 0;
+    left: 0;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5vmin;
+    padding-bottom: 5vmin;
+    
+}
+
+.modal-content h2{
+    font-size: 3em;
+    margin-top: 0;
+}
+
+.modal-content p{
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.close-button {
+    margin-left: auto;
+    margin-right: 2vmin;
+    font-size: 3em;
+    font-weight: bold;
+    color: rgb(122, 121, 121);
+}
+
+.search-div button, .search-div input{
+    font-size: 1.2em;
+}
+
+.close-button:hover,
+.close-button:focus 
+{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.open {
+    display: block;
+}
