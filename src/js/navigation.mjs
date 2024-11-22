@@ -7,7 +7,6 @@ export function enableNavigation() {
 
 function enableSubmenus() {
 
-    let menuButton = document.querySelector("#global-nav-toggle")
     let submenuButtons = document.querySelectorAll(".global-nav__split-button__toggle");
     for(const button of submenuButtons){
         button.addEventListener("click", (event) =>{
@@ -25,7 +24,6 @@ function enableSubmenus() {
         else{
             target = event.target.closest("ul");
         }
-        // target.classList.toggle("show");
         if(target.getAttribute("aria-expanded") == "true")
         {
             target.setAttribute("aria-expanded", false);
@@ -41,6 +39,7 @@ function enableSubmenus() {
 
     function enableMenuButton()
     {
+        let menuButton = document.querySelector("#global-nav-toggle");
         menuButton.addEventListener("click", (event) => {
             let target = event.target;
             // toggle the show class on the global-nav

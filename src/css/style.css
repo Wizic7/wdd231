@@ -285,9 +285,9 @@ svg {
 
 @media screen and (max-width:1000px) {
   
-
 .global-nav{
   width: 100vw;
+  overflow-y: hidden;
 }
 
 .global-nav h2:first-of-type{
@@ -376,6 +376,10 @@ svg {
 }
 
 @media screen and (min-width: 1000px) {
+  .global-header{
+    overflow-y: hidden;
+  }
+
   .show{
     max-height: 300px;
   }
