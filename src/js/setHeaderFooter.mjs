@@ -1,4 +1,5 @@
 import { bannerTemplate } from "./templates.mjs";
+import { enableNavigation } from "./navigation.mjs";
 
 export function setHeaderInfo(park) {
     updateDisclaimer(park);
