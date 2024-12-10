@@ -114,6 +114,13 @@ a:hover {
   color: var(--bs-link-hover-color);
 }
 
+.visitor-center a{
+  color: var(--bs-link-hover-color);
+}
+.visitor-center a:hover{
+  color: var(--bs-black);
+}
+
 a {
   text-decoration: none;
 }
@@ -641,4 +648,153 @@ Conditions Styles
 .activity p{
   margin: 0;
   font-size: .75em;
+}
+
+/* 
+----------------------
+Visitor Center Page 
+----------------------
+*/
+
+.vc-name
+{
+
+  margin: 4vmin;
+  padding-bottom: 4vmin;
+  border-bottom: solid var(--bs-gray-500) 2px;
+}
+.vc-name svg {
+  width: 1em;
+  height: 1em;
+  fill: var(--bs-black);
+  margin-right: 2vmin;
+}
+
+.vc-info
+{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.vc-info figure
+{
+  text-align: center;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.vc-info img{
+  width: 100%;
+  height: 60vmin;
+  object-fit: cover;
+}
+
+.vc-info span, .vc-info figcaption
+{
+  display: block; 
+  font-size: .8em;
+  font-style: italic;
+  text-align: left;
+}
+
+.vc-info p
+{
+  line-height: 1.5em;
+}
+
+.vc-details-list svg
+{
+  width: 1em;
+  height: 1em;
+  fill: var(--bs-black);
+  margin-right: 5vmin;
+}
+
+.vc-details-list
+{
+  width: 80%;
+  margin: 5vmin auto;
+}
+
+.vc-details-list summary {
+  /* Don't know why, but display: flex enables display: none for the marker */
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+
+  padding-top: 2vmin;
+  padding-bottom: 2vmin;
+  border-bottom: solid 1px var(--bs-gray-500);
+  border-top: solid 1px var(--bs-gray-500);
+}
+
+#vcAddresses section{
+  margin-bottom: 4vmin;
+
+}
+
+#vcAmenities ul {
+  list-style: none;
+}
+
+#vcAmenities li {
+  margin-bottom: 1em;
+}
+
+#vcContact a
+{
+  color: var(--bs-link-hover-color)
+}
+
+.vc-gallery svg
+{
+  width: 1em;
+  height: 1em;
+}
+
+.vc-gallery h2 
+{
+  text-align: center;
+}
+
+.vc-gallery ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.vc-gallery img 
+{
+  width: 33vmin;
+  height: 33vmin;
+  object-fit: cover;
+}
+
+
+/* First we have to hide the default markers */
+.vc-details-list summary::marker, 
+.vc-details-list summary::-webkit-details-marker {
+  display: none;
+}
+
+/* then we can use ::after to insert in a new image and position it to the right place */
+.vc-details-list summary::after {
+  content: "";
+  position: absolute;
+  right: 10%;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-image: url("../images/arrow.svg");
+  background-size: 1.25rem 1.25rem;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+/* when you open a details element the browser automatically adds an "open" attribute to the detail.
+We can use this with some fancy selector work to change the background position of the arrow image to show the open state. */
+.vc-details-list details[open] > summary::after {
+  transform: rotate(180deg);
 }
